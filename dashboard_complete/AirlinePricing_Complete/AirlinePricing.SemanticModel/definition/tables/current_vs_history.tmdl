@@ -1,0 +1,205 @@
+table current_vs_history
+	lineageTag: ea455fb3-c261-48d5-a8fc-f7a734fa7dd8
+
+	measure 'Flights Count' = COUNTROWS(current_vs_history)
+		formatString: 0
+		lineageTag: c5847139-d530-4800-87fd-84057c001b85
+
+	measure 'Seats Remaining' =
+			
+			SUM('current_vs_history'[seats_remaining])
+		formatString: 0
+		lineageTag: 5a0eef3f-c8ce-445e-aed6-b5c5ae1747cd
+
+	measure 'Booked Revenue EUR' =
+			
+			SUM('current_vs_history'[revenue_now_eur])
+		lineageTag: db423182-8169-42aa-9374-adc090d496ce
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Booked Load Factor' =
+			
+			DIVIDE(
+			    SUM('current_vs_history'[passengers_now]),
+			    SUM('current_vs_history'[capacity])
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 54df39bc-0696-4727-b662-f7a1c26c3f6b
+
+	measure 'Weighted Gap (pp)' = DIVIDE(SUMX(current_vs_history, current_vs_history[capacity] * current_vs_history[gap_same_lead_pp]), SUM(current_vs_history[capacity]))
+		formatString: 0.00
+		lineageTag: 3c9adc66-511f-42f8-9a1e-feb7f299e324
+
+	column flight_id
+		dataType: string
+		lineageTag: 6e94b1cc-218c-4f05-8712-10e6e07fedf7
+		summarizeBy: none
+		sourceColumn: flight_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column route
+		dataType: string
+		lineageTag: 502abcfd-c570-4154-9fbb-fb1c047e557b
+		summarizeBy: none
+		sourceColumn: route
+
+		annotation SummarizationSetBy = Automatic
+
+	column departure_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8a2e84cd-4e41-46a2-bf5e-c02138155da5
+		summarizeBy: none
+		sourceColumn: departure_date
+
+		variation Variation
+			isDefault
+			relationship: 00d58d7f-712f-4605-b319-7d153b333c7d
+			defaultHierarchy: LocalDateTable_4004e820-e763-4afa-87ed-9b0dcdcb26bf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column capacity
+		dataType: int64
+		formatString: 0
+		lineageTag: 073a10d0-7c3a-4f91-ac93-c3c2b431d17e
+		summarizeBy: sum
+		sourceColumn: capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column base_fare_eur
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c5d6a5e-baba-46ab-a872-717ab70f917b
+		summarizeBy: sum
+		sourceColumn: base_fare_eur
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_synthetic
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3b95320e-3aac-462f-922f-b39b595975ca
+		summarizeBy: none
+		sourceColumn: is_synthetic
+
+		annotation SummarizationSetBy = Automatic
+
+	column passengers_now
+		dataType: int64
+		formatString: 0
+		lineageTag: 431deebc-cb2a-4247-b63f-512bdbbc9da7
+		summarizeBy: sum
+		sourceColumn: passengers_now
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_now_eur
+		dataType: double
+		lineageTag: 8e8c6ba3-2eec-4b36-b06b-d3ba328ef38d
+		summarizeBy: sum
+		sourceColumn: revenue_now_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column load_factor_now_pct
+		dataType: double
+		formatString: 0.00
+		lineageTag: f4e91ecf-2882-46bc-b14f-edd1a8b3622c
+		summarizeBy: none
+		sourceColumn: load_factor_now_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_fare_now_eur
+		dataType: double
+		formatString: 0.00
+		lineageTag: e1c07321-647b-42cc-adcd-c020bd7716f1
+		summarizeBy: none
+		sourceColumn: average_fare_now_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bookings_last_7_days
+		dataType: int64
+		formatString: 0
+		lineageTag: e9c22785-9e6f-4f2f-9c23-1741d04a9a7b
+		summarizeBy: sum
+		sourceColumn: bookings_last_7_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_to_departure
+		dataType: int64
+		formatString: 0
+		lineageTag: a4b7ab0d-d8cf-477e-a88a-670aded0643c
+		summarizeBy: sum
+		sourceColumn: days_to_departure
+
+		annotation SummarizationSetBy = Automatic
+
+	column seats_remaining
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a61b4df-ee91-427e-b63f-7af12e1dc0d8
+		summarizeBy: sum
+		sourceColumn: seats_remaining
+
+		annotation SummarizationSetBy = Automatic
+
+	column historical_peer_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d6b6ab2-c468-49f6-b973-de3f15304125
+		summarizeBy: sum
+		sourceColumn: historical_peer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column benchmark_same_lead_pct
+		dataType: double
+		formatString: 0.00
+		lineageTag: 84804fc8-bdaa-4c39-b495-6a43c54046ed
+		summarizeBy: none
+		sourceColumn: benchmark_same_lead_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gap_same_lead_pp
+		dataType: double
+		formatString: 0.00
+		lineageTag: 3456dd96-e1f9-4367-b58e-b15b984e4989
+		summarizeBy: none
+		sourceColumn: gap_same_lead_pp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition current_vs_history = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\airline-pricing-analysis\data\current_vs_history.csv"),[Delimiter=",", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"flight_id", type text}, {"route", type text}, {"departure_date", type date}, {"capacity", Int64.Type}, {"base_fare_eur", Int64.Type}, {"is_synthetic", type logical}, {"passengers_now", Int64.Type}, {"revenue_now_eur", type number}, {"load_factor_now_pct", type number}, {"average_fare_now_eur", type number}, {"bookings_last_7_days", Int64.Type}, {"days_to_departure", Int64.Type}, {"seats_remaining", Int64.Type}, {"historical_peer_count", Int64.Type}, {"benchmark_same_lead_pct", type number}, {"gap_same_lead_pp", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

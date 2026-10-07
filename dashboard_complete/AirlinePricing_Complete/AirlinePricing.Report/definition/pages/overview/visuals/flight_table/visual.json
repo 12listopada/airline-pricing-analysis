@@ -1,0 +1,487 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "flight_table",
+  "position": {
+    "x": 24,
+    "y": 550,
+    "z": 5000,
+    "height": 322,
+    "width": 1392,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "current_vs_history"
+                    }
+                  },
+                  "Property": "flight_id"
+                }
+              },
+              "queryRef": "current_vs_history.flight_id",
+              "nativeQueryRef": "Flight",
+              "displayName": "Flight"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "current_vs_history"
+                    }
+                  },
+                  "Property": "days_to_departure"
+                }
+              },
+              "queryRef": "current_vs_history.days_to_departure",
+              "nativeQueryRef": "Days to departure",
+              "displayName": "Days to departure"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "current_vs_history"
+                    }
+                  },
+                  "Property": "load_factor_now_pct"
+                }
+              },
+              "queryRef": "current_vs_history.load_factor_now_pct",
+              "nativeQueryRef": "Booked Seats (%)",
+              "displayName": "Booked Seats (%)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "current_vs_history"
+                    }
+                  },
+                  "Property": "benchmark_same_lead_pct"
+                }
+              },
+              "queryRef": "current_vs_history.benchmark_same_lead_pct",
+              "nativeQueryRef": "Historical Benchmark (%)",
+              "displayName": "Historical Benchmark (%)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "current_vs_history"
+                    }
+                  },
+                  "Property": "gap_same_lead_pp"
+                }
+              },
+              "queryRef": "current_vs_history.gap_same_lead_pp",
+              "nativeQueryRef": "Gap vs History (pp)",
+              "displayName": "Gap vs History (pp)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "current_vs_history"
+                    }
+                  },
+                  "Property": "seats_remaining"
+                }
+              },
+              "queryRef": "current_vs_history.seats_remaining",
+              "nativeQueryRef": "Available Seats",
+              "displayName": "Available Seats"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "current_vs_history"
+                    }
+                  },
+                  "Property": "bookings_last_7_days"
+                }
+              },
+              "queryRef": "current_vs_history.bookings_last_7_days",
+              "nativeQueryRef": "Last 7 Days: Bookings",
+              "displayName": "Last 7 Days: Bookings"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "current_vs_history"
+                  }
+                },
+                "Property": "gap_same_lead_pp"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 1,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "current_vs_history"
+                                            }
+                                          },
+                                          "Property": "gap_same_lead_pp"
+                                        }
+                                      },
+                                      "Function": 1
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "5D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 4,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "current_vs_history"
+                                            }
+                                          },
+                                          "Property": "gap_same_lead_pp"
+                                        }
+                                      },
+                                      "Function": 1
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "100D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#087F8C'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "current_vs_history"
+                                            }
+                                          },
+                                          "Property": "gap_same_lead_pp"
+                                        }
+                                      },
+                                      "Function": 1
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "-5D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 4,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "current_vs_history"
+                                            }
+                                          },
+                                          "Property": "gap_same_lead_pp"
+                                        }
+                                      },
+                                      "Function": 1
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "5D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#142D46'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "current_vs_history"
+                                            }
+                                          },
+                                          "Property": "gap_same_lead_pp"
+                                        }
+                                      },
+                                      "Function": 1
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "-100D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Entity": "current_vs_history"
+                                            }
+                                          },
+                                          "Property": "gap_same_lead_pp"
+                                        }
+                                      },
+                                      "Function": 1
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "-5D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#B54747'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "current_vs_history.gap_same_lead_pp"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#DCE5ED'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Flight Review - Booking Pace vs History'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#142D46'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "17D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+**/.pbi/
+*.zip
+scripts/archive/
+dashboard_professional/
+data/AirlinePricing_Complete/
+dashboard_complete/AirlinePricing_Complete/data/
+dashboard_complete/AirlinePricing_Complete/scripts/

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "AirlinePricing"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "230b9b40-5958-4699-a986-b4ca1a48b64c"
+  }
+}
