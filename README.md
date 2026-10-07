@@ -40,7 +40,7 @@ Displays upcoming-flight KPIs, route filters, capacity-weighted booking gaps and
 
 Each flight is compared with historical flights on the same route at the same number of days before departure.
 
-![alt text](<Zrzut ekranu 2026-10-07 190821.png>)
+![Portfolio Overview](screenshots/01-overview.png)
 
 ### 2. Booking Pace
 
@@ -48,7 +48,7 @@ Compares a selected flight's cumulative bookings with its historical benchmark.
 
 Only checkpoints reached by the analysis date are included. The categorical axis orders checkpoints from D−60 toward departure; spacing between checkpoints does not represent equal elapsed time.
 
-![alt text](<Zrzut ekranu 2026-10-07 190834.png>)
+![Booking Pace](screenshots/02-booking-pace.png)
 
 ### 3. Pricing Scenarios
 
@@ -58,7 +58,7 @@ Rows represent demand changes of −20%, 0% and +20%. Columns represent price ch
 
 Select one flight to view its scenarios. Alternative scenarios must not be added together.
 
-![alt text](<Zrzut ekranu 2026-10-07 190847-1.png>)
+![Pricing Scenarios](screenshots/03-pricing-scenarios.png)
 
 ### 4. Methodology
 
