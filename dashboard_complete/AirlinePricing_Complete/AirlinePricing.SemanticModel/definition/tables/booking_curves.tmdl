@@ -38,7 +38,7 @@ table booking_curves
 	column days_before_departure
 		dataType: int64
 		lineageTag: a25f682b-99ba-4367-9064-61d415879cba
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: days_before_departure
 
 		annotation SummarizationSetBy = Automatic
@@ -69,7 +69,7 @@ table booking_curves
 		dataType: double
 		formatString: 0.00
 		lineageTag: 510c650a-d027-4e26-90e6-15023bba5dcf
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: load_factor_pct
 
 		annotation SummarizationSetBy = Automatic
@@ -78,7 +78,7 @@ table booking_curves
 		dataType: double
 		formatString: 0.00
 		lineageTag: 055f10ef-4c5c-4b1d-a852-ba56662772e2
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: historical_load_factor_pct
 
 		annotation SummarizationSetBy = Automatic
@@ -87,7 +87,7 @@ table booking_curves
 		dataType: double
 		formatString: 0.00
 		lineageTag: 5e210d33-f5ec-4f68-8b90-d336762978d5
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: gap_pp
 
 		annotation SummarizationSetBy = Automatic
@@ -95,7 +95,7 @@ table booking_curves
 	column historical_peer_count
 		dataType: int64
 		lineageTag: f78e8a5c-b0b0-46a5-af0a-5dd3f4648263
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: historical_peer_count
 
 		annotation SummarizationSetBy = Automatic
@@ -110,7 +110,7 @@ table booking_curves
 		mode: import
 		source =
 				let
-					Source = Csv.Document(File.Contents("C:\airline-pricing-analysis\data\booking_curves.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Source = Csv.Document(File.Contents(DataFolder & "\booking_curves.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 					Typed = Table.TransformColumnTypes(Headers, {{"flight_id", type text}, {"route", type text}, {"departure_date", type date}, {"days_before_departure", Int64.Type}, {"checkpoint_date", type date}, {"booked_passengers", Int64.Type}, {"load_factor_pct", type number}, {"historical_load_factor_pct", type number}, {"gap_pp", type number}, {"historical_peer_count", Int64.Type}, {"is_synthetic", type logical}}, "en-US")
 				in Typed

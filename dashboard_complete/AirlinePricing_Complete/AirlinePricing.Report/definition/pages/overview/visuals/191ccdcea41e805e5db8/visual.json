@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "191ccdcea41e805e5db8",
   "position": {
-    "x": 374,
-    "y": 150,
+    "x": 28,
+    "y": 376,
     "z": 0,
-    "height": 140,
-    "width": 342,
+    "height": 148,
+    "width": 240,
     "tabOrder": 0
   },
   "visual": {
@@ -59,7 +59,18 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "11D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B8795'"
+                    }
+                  }
                 }
               }
             }
@@ -75,13 +86,45 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "32D"
+                  "Value": "30D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#20344C'"
+                    }
+                  }
                 }
               }
             }
           },
           "selector": {
             "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "current_vs_history.Seats Remaining"
           }
         }
       ],
@@ -149,7 +192,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DCE5ED'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -158,7 +201,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "14D"
                 }
               }
             }

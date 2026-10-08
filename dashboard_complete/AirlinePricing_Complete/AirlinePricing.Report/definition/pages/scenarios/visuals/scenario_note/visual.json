@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "scenario_note",
   "position": {
-    "x": 24,
-    "y": 625,
-    "z": 5000,
-    "height": 220,
-    "width": 1392,
+    "x": 50,
+    "y": 594,
+    "z": 100,
+    "height": 242,
+    "width": 1340,
     "tabOrder": 5000
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Baseline: historical remaining booking pickup at the same lead time.",
+                    "value": "Baseline: historical remaining booking pickup at the same lead time; fare = route base fare × 1.45.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "20pt",
-                      "color": "#142d46"
+                      "fontSize": "15pt",
+                      "color": "#536579"
                     }
                   }
                 ]
@@ -31,11 +31,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Future fare assumption: route base fare × 1.45. Existing bookings are unchanged.",
+                    "value": "Price and demand vary independently. Sales are capped at available seats; existing sales stay fixed.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "20pt",
-                      "color": "#142d46"
+                      "fontSize": "15pt",
+                      "color": "#536579"
                     }
                   }
                 ]
@@ -43,11 +43,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Additional sales are capped at remaining seat capacity; fractional passengers are expected values.",
+                    "value": "Break-even without a capacity cap: −10% price needs +11.11% sales; +10% price tolerates −9.09% sales.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "20pt",
-                      "color": "#142d46"
+                      "fontSize": "15pt",
+                      "color": "#536579"
                     }
                   }
                 ]
@@ -55,11 +55,23 @@
               {
                 "textRuns": [
                   {
-                    "value": "Do not add scenarios together or interpret them as an optimal-price recommendation.",
+                    "value": "At D−1, remaining demand is zero because the generator excludes departure-day bookings.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "20pt",
-                      "color": "#142d46"
+                      "fontSize": "15pt",
+                      "color": "#536579"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Scenarios are sensitivity assumptions, not elasticity estimates or optimal-fare recommendations.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "15pt",
+                      "color": "#536579"
                     }
                   }
                 ]
@@ -76,7 +88,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -107,7 +119,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -116,7 +128,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DCE5ED'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -125,7 +137,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "14D"
                 }
               }
             }

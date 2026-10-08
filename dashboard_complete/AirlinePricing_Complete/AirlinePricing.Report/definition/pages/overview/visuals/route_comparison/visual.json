@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "route_comparison",
   "position": {
-    "x": 284,
-    "y": 310,
+    "x": 288,
+    "y": 210,
     "z": 7000,
-    "height": 220,
-    "width": 1132,
+    "height": 268,
+    "width": 1124,
     "tabOrder": 7000
   },
   "visual": {
@@ -63,7 +63,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#087F8C'"
+                      "Value": "'#79A9D3'"
                     }
                   }
                 }
@@ -78,7 +78,36 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B8795'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EEF2F6'"
+                    }
+                  }
                 }
               }
             }
@@ -106,6 +135,61 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B8795'"
+                    }
+                  }
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6D7E90'"
+                    }
+                  }
                 }
               }
             }
@@ -160,7 +244,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DCE5ED'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -169,7 +253,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "14D"
                 }
               }
             }
@@ -189,7 +273,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Booking Pace vs History'"
+                  "Value": "'Booking gap vs history (pp) | capacity-weighted'"
                 }
               }
             },
@@ -198,7 +282,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#142D46'"
+                      "Value": "'#536579'"
                     }
                   }
                 }

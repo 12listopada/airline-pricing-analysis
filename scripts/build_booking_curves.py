@@ -18,54 +18,27 @@ past = flights.loc[flights["departure_date"] < AS_OF]
 future = flights.loc[flights["departure_date"] > AS_OF]
 rows = []
 
-for route, future_group in future.groupby("route"):
-    peers = past.loc[past["route"] == route]
-    historical_bookings = bookings.loc[
-        bookings["flight_id"].isin(peers["flight_id"])
-    ]
+for flight in future.itertuples(index=False):
+    peers = past.loc[past["route"] == flight.route]
+    historical_bookings = bookings.loc[bookings["flight_id"].isin(peers["flight_id"])]
     historical_capacity = peers["capacity"].sum()
-
-    for days_before in CHECKPOINTS:
+    current_lead = int((flight.departure_date - AS_OF).days)
+    for days_before in sorted(set(CHECKPOINTS + [current_lead]), reverse=True):
+        checkpoint_date = flight.departure_date - pd.Timedelta(days=days_before)
+        if checkpoint_date > AS_OF:
+            continue
         historical_passengers = historical_bookings.loc[
-            historical_bookings["days_before_departure"] >= days_before,
-            "passengers",
-        ].sum()
-
-        benchmark = (
-            100 * historical_passengers / historical_capacity
-            if historical_capacity > 0 else float("nan")
-        )
-
-        for flight in future_group.itertuples(index=False):
-            checkpoint_date = (
-                flight.departure_date
-                - pd.Timedelta(days=days_before)
-            )
-
-            # Exclude checkpoints that have not happened yet.
-            if checkpoint_date > AS_OF:
-                continue
-
-            passengers = bookings.loc[
-                (bookings["flight_id"] == flight.flight_id)
-                & (bookings["days_before_departure"] >= days_before),
-                "passengers",
-            ].sum()
-
-            load_factor = 100 * passengers / flight.capacity
-            rows.append({
-                "flight_id": flight.flight_id,
-                "route": route,
-                "departure_date": flight.departure_date,
-                "days_before_departure": days_before,
-                "checkpoint_date": checkpoint_date,
-                "booked_passengers": int(passengers),
-                "load_factor_pct": load_factor,
-                "historical_load_factor_pct": benchmark,
-                "gap_pp": load_factor - benchmark,
-                "historical_peer_count": len(peers),
-                "is_synthetic": True,
-            })
+            historical_bookings["days_before_departure"] >= days_before, "passengers"].sum()
+        benchmark = 100 * historical_passengers / historical_capacity
+        passengers = bookings.loc[
+            (bookings["flight_id"] == flight.flight_id) &
+            (bookings["days_before_departure"] >= days_before), "passengers"].sum()
+        lf = 100 * passengers / flight.capacity
+        rows.append({"flight_id": flight.flight_id, "route": flight.route,
+            "departure_date": flight.departure_date, "days_before_departure": days_before,
+            "checkpoint_date": checkpoint_date, "booked_passengers": int(passengers),
+            "load_factor_pct": lf, "historical_load_factor_pct": benchmark,
+            "gap_pp": lf - benchmark, "historical_peer_count": len(peers), "is_synthetic": True})
 
 curves = pd.DataFrame(rows).sort_values(
     ["flight_id", "days_before_departure"],

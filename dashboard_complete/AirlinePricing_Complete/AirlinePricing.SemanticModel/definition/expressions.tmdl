@@ -1,0 +1,5 @@
+expression DataFolder = "C:\airline-pricing-analysis\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 92c1ccc7-dedc-47b2-a76a-0b4c13d6f3e0
+
+	annotation PBI_ResultType = Text
+

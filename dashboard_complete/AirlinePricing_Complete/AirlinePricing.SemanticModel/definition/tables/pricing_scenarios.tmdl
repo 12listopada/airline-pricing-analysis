@@ -1,11 +1,11 @@
 table pricing_scenarios
 	lineageTag: bc2f2661-a9ae-4f1d-8f1e-cd15e67704e2
 
-	measure 'Future Revenue EUR' = IF(HASONEVALUE(current_vs_history[flight_id]), SUM(pricing_scenarios[future_sales_revenue_eur]))
+	measure 'Future Revenue EUR' = IF(HASONEVALUE(current_vs_history[flight_id]) && HASONEVALUE(pricing_scenarios[price_change_pct]) && HASONEVALUE(pricing_scenarios[demand_change_pct]), SUM(pricing_scenarios[future_sales_revenue_eur]))
 		formatString: #,0.00
 		lineageTag: 7ed4993b-4cc6-4cd7-802e-e67ea93655c2
 
-	measure 'Revenue Change EUR' = IF(HASONEVALUE(current_vs_history[flight_id]), SUM(pricing_scenarios[revenue_change_eur]))
+	measure 'Revenue Change EUR' = IF(HASONEVALUE(current_vs_history[flight_id]) && HASONEVALUE(pricing_scenarios[price_change_pct]) && HASONEVALUE(pricing_scenarios[demand_change_pct]), SUM(pricing_scenarios[revenue_change_eur]))
 		formatString: #,0.00
 		lineageTag: fbdc60b9-511f-4821-a010-9a724b97b22d
 
@@ -112,7 +112,7 @@ table pricing_scenarios
 		mode: import
 		source =
 				let
-					Source = Csv.Document(File.Contents("C:\airline-pricing-analysis\data\pricing_scenarios.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Source = Csv.Document(File.Contents(DataFolder & "\pricing_scenarios.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 					Typed = Table.TransformColumnTypes(Headers, {{"flight_id", type text}, {"route", type text}, {"days_to_departure", Int64.Type}, {"seats_remaining", Int64.Type}, {"price_change_pct", type number}, {"demand_change_pct", type number}, {"assumed_future_fare_eur", type number}, {"baseline_unconstrained_demand", type number}, {"expected_additional_passengers", type number}, {"capacity_constrained", type logical}, {"future_sales_revenue_eur", type number}, {"baseline_future_revenue_eur", type number}, {"revenue_change_eur", type number}, {"scenario_total_booked_revenue_eur", type number}, {"is_synthetic", type logical}}, "en-US")
 				in Typed

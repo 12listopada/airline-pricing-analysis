@@ -1,4 +1,61 @@
 {
   "version": "1.1.0",
-  "diagrams": []
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 568,
+            "y": 0
+          },
+          "nodeIndex": "current_vs_history",
+          "nodeLineageTag": "ea455fb3-c261-48d5-a8fc-f7a734fa7dd8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "booking_curves",
+          "nodeLineageTag": "a7406499-21e6-415f-98d2-de6fa56690b7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 0
+          },
+          "nodeIndex": "pricing_scenarios",
+          "nodeLineageTag": "bc2f2661-a9ae-4f1d-8f1e-cd15e67704e2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
 }

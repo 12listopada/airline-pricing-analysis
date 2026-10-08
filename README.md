@@ -27,7 +27,7 @@ Analysis date: **end of 7 October 2026**. All monetary values are in **EUR**.
 | Available seats on upcoming flights | 4,786 |
 | Booked ticket revenue on upcoming flights | €1,813,200.63 |
 | Portfolio booked load factor | 55.7% |
-| Booking curve observations | 195 |
+| Booking curve observations | 237 |
 | Pricing scenarios | 486 |
 
 Portfolio booked load factor describes the current position across flights with different departure dates. It is not a forecast of final occupancy.
@@ -46,7 +46,7 @@ Each flight is compared with historical flights on the same route at the same nu
 
 Compares a selected flight's cumulative bookings with its historical benchmark.
 
-Only checkpoints reached by the analysis date are included. The categorical axis orders checkpoints from D−60 toward departure; spacing between checkpoints does not represent equal elapsed time.
+Only checkpoints reached by the analysis date are included, including the actual snapshot checkpoint for each flight. The categorical axis orders checkpoints from D−60 toward departure; spacing between checkpoints does not represent equal elapsed time.
 
 ![Booking Pace](screenshots/02-booking-pace.png)
 
@@ -60,9 +60,19 @@ Select one flight to view its scenarios. Alternative scenarios must not be added
 
 ![Pricing Scenarios](screenshots/03-pricing-scenarios.png)
 
-### 4. Methodology
+### 4. Commercial Review
+
+Three evidence-based review cases connect booking gaps, remaining capacity and revenue sensitivity with the next commercial checks. Recommendations are conditional and use synthetic data.
+
+![Commercial Review](screenshots/04-commercial-review.png)
+
+### 5. Methodology
 
 Explains the data, calculations, assumptions and limits of the analysis.
+
+![Methodology](screenshots/05-methodology.png)
+
+[View the five-page dashboard PDF](docs/AirlinePricing.pdf) · [Read the portfolio brief](docs/Portfolio_Brief_EN.md)
 
 
 ## Findings and Recommended Review
@@ -113,6 +123,9 @@ Without capacity constraints, a 10% fare reduction requires more than 11.1% addi
 - Additional ticket sales cannot exceed remaining seat capacity.
 - Existing booked revenue is unchanged.
 - Fractional passenger counts represent expected values.
+- Departure-day bookings are excluded by the generator. At D−1, future demand is therefore zero by construction.
+- Measures require one flight and one price/demand combination; totals over alternative scenarios return blank.
+- The historical remaining-sales proxy is not an estimate of latent unconstrained market demand.
 
 ## Project Files
 
@@ -137,6 +150,7 @@ py -m venv .venv
 .\.venv\Scripts\python.exe scripts\analyze_bookings.py
 .\.venv\Scripts\python.exe scripts\build_booking_curves.py
 .\.venv\Scripts\python.exe scripts\build_pricing_scenarios.py
+.\.venv\Scripts\python.exe scripts\validate_portfolio.py
 ```
 
 Open the saved `.pbip` project in Power BI Desktop and refresh the data.
@@ -147,7 +161,7 @@ The saved report currently expects its CSV inputs in:
 C:\airline-pricing-analysis\data
 ```
 
-If the project is stored elsewhere, update the CSV source paths in Power Query before refreshing.
+If the project is stored elsewhere, set the `DataFolder` parameter in Power Query to the absolute path of the root `data` folder before refreshing. Open `dashboard_complete/AirlinePricing_Complete/AirlinePricing.pbip`.
 
 The analysis date is fixed in all four analytical scripts. Changing it requires updating the scripts consistently and regenerating the outputs.
 
@@ -169,7 +183,7 @@ Checks include:
 - Scenario sales within remaining capacity.
 - Zero revenue change for the baseline scenario.
 
-Selected dashboard values and filtering behavior were also checked in Power BI Desktop.
+The five-page Power BI PDF was visually reviewed on 8 October 2026. Displayed sample results match the analysis. The user accepted the visible table viewport limits in the PDF. Exhaustive interactive-filter testing was not performed.
 
 ## Limitations
 

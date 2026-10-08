@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "booking_curve",
   "position": {
-    "x": 23.076923076923077,
-    "y": 244.23076923076923,
+    "x": 28,
+    "y": 210,
     "z": 0,
-    "height": 376.92307692307691,
-    "width": 1392.3076923076922,
+    "height": 420,
+    "width": 1384,
     "tabOrder": 0
   },
   "visual": {
@@ -27,9 +27,9 @@
                 }
               },
               "queryRef": "booking_curves.days_before_departure",
-              "nativeQueryRef": "days_before_departureDays Before Departure",
+              "nativeQueryRef": "Days before departure",
               "active": true,
-              "displayName": "days_before_departureDays Before Departure"
+              "displayName": "Days before departure"
             }
           ]
         },
@@ -96,6 +96,38 @@
                   "Value": "'Categorical'"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B8795'"
+                    }
+                  }
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Days before departure'"
+                }
+              }
             }
           }
         }
@@ -116,7 +148,112 @@
                   "Value": "100D"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B8795'"
+                    }
+                  }
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EEF2F6'"
+                    }
+                  }
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Booked load factor (%)'"
+                }
+              }
             }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6D7E90'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4B83B4'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "booking_curves.Selected Flight LF (%)"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#AEC4D8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "booking_curves.Historical LF (%)"
           }
         }
       ]
@@ -168,7 +305,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DCE5ED'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -177,7 +314,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "14D"
                 }
               }
             }
@@ -206,7 +343,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#142D46'"
+                      "Value": "'#536579'"
                     }
                   }
                 }
@@ -215,7 +352,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "12D"
                 }
               }
             }

@@ -9,7 +9,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["current_vs_history","booking_curves","pricing_scenarios"]
+annotation PBI_QueryOrder = ["current_vs_history","booking_curves","pricing_scenarios","DataFolder"]
 
 annotation PBI_ProTooling = ["DevMode"]
 

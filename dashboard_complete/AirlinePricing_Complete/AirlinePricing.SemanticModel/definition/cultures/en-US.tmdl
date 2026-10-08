@@ -638,17 +638,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "days_before_departureDays Before Departure": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
-			          "Days Before Departure": {
+			          "Days before departure": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1047,6 +1037,16 @@ cultureInfo en-US
 			            "Type": "Noun",
 			            "State": "Generated",
 			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "Gap vs history (pp)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
