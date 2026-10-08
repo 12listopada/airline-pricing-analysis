@@ -1,0 +1,117 @@
+table booking_curves
+	lineageTag: a7406499-21e6-415f-98d2-de6fa56690b7
+
+	measure 'Selected Flight LF (%)' = IF(HASONEVALUE(current_vs_history[flight_id]), AVERAGE(booking_curves[load_factor_pct]))
+		formatString: #,0.00
+		lineageTag: aa644200-e742-481a-8998-d9d59cf2c42b
+
+	measure 'Historical LF (%)' = IF(HASONEVALUE(current_vs_history[flight_id]), AVERAGE(booking_curves[historical_load_factor_pct]))
+		formatString: #,0.00
+		lineageTag: a5645052-d14d-4380-add8-a11606f998a1
+
+	column flight_id
+		dataType: string
+		lineageTag: ebc79bcd-8b75-4720-9881-db6236884e86
+		summarizeBy: none
+		sourceColumn: flight_id
+
+	column route
+		dataType: string
+		lineageTag: ce27a2be-dcab-4e14-a7ec-fb7c368d4504
+		summarizeBy: none
+		sourceColumn: route
+
+	column departure_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6a4448b2-b079-4c7f-a2a9-f834c8d9dd04
+		summarizeBy: none
+		sourceColumn: departure_date
+
+		variation Variation
+			isDefault
+			relationship: bc78bc50-33df-45d5-a6c5-ad691df55e0a
+			defaultHierarchy: LocalDateTable_2b64bf4f-c073-4417-ae72-9fec1e585d49.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_before_departure
+		dataType: int64
+		lineageTag: a25f682b-99ba-4367-9064-61d415879cba
+		summarizeBy: sum
+		sourceColumn: days_before_departure
+
+		annotation SummarizationSetBy = Automatic
+
+	column checkpoint_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0ed2abdc-97d8-4ac6-bf13-6090447e4823
+		summarizeBy: none
+		sourceColumn: checkpoint_date
+
+		variation Variation
+			isDefault
+			relationship: fd7c8e99-6181-49b4-b1b0-5344c50d3a07
+			defaultHierarchy: LocalDateTable_9176d197-dff5-4800-a7cd-fad463303aaf.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column booked_passengers
+		dataType: int64
+		lineageTag: 034844ae-8ca5-4fa3-a214-33013acd6847
+		summarizeBy: sum
+		sourceColumn: booked_passengers
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_factor_pct
+		dataType: double
+		formatString: 0.00
+		lineageTag: 510c650a-d027-4e26-90e6-15023bba5dcf
+		summarizeBy: sum
+		sourceColumn: load_factor_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column historical_load_factor_pct
+		dataType: double
+		formatString: 0.00
+		lineageTag: 055f10ef-4c5c-4b1d-a852-ba56662772e2
+		summarizeBy: sum
+		sourceColumn: historical_load_factor_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column gap_pp
+		dataType: double
+		formatString: 0.00
+		lineageTag: 5e210d33-f5ec-4f68-8b90-d336762978d5
+		summarizeBy: sum
+		sourceColumn: gap_pp
+
+		annotation SummarizationSetBy = Automatic
+
+	column historical_peer_count
+		dataType: int64
+		lineageTag: f78e8a5c-b0b0-46a5-af0a-5dd3f4648263
+		summarizeBy: sum
+		sourceColumn: historical_peer_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_synthetic
+		dataType: boolean
+		lineageTag: 6b0ed36b-1974-4060-923b-a7c5ad4126fa
+		summarizeBy: none
+		sourceColumn: is_synthetic
+
+	partition booking_curves = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\airline-pricing-analysis\data\booking_curves.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"flight_id", type text}, {"route", type text}, {"departure_date", type date}, {"days_before_departure", Int64.Type}, {"checkpoint_date", type date}, {"booked_passengers", Int64.Type}, {"load_factor_pct", type number}, {"historical_load_factor_pct", type number}, {"gap_pp", type number}, {"historical_peer_count", Int64.Type}, {"is_synthetic", type logical}}, "en-US")
+				in Typed
+

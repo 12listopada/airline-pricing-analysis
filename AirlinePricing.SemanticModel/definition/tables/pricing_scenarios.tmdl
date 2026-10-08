@@ -1,0 +1,119 @@
+table pricing_scenarios
+	lineageTag: bc2f2661-a9ae-4f1d-8f1e-cd15e67704e2
+
+	measure 'Future Revenue EUR' = IF(HASONEVALUE(current_vs_history[flight_id]), SUM(pricing_scenarios[future_sales_revenue_eur]))
+		formatString: #,0.00
+		lineageTag: 7ed4993b-4cc6-4cd7-802e-e67ea93655c2
+
+	measure 'Revenue Change EUR' = IF(HASONEVALUE(current_vs_history[flight_id]), SUM(pricing_scenarios[revenue_change_eur]))
+		formatString: #,0.00
+		lineageTag: fbdc60b9-511f-4821-a010-9a724b97b22d
+
+	column flight_id
+		dataType: string
+		lineageTag: fde43f68-b0d3-4358-9c2e-1d9837d44389
+		summarizeBy: none
+		sourceColumn: flight_id
+
+	column route
+		dataType: string
+		lineageTag: 452ce223-db0b-4215-9663-c7dd71e2c795
+		summarizeBy: none
+		sourceColumn: route
+
+	column days_to_departure
+		dataType: int64
+		lineageTag: e2fb02ad-e31d-4a3c-91e9-76dbcd743dc0
+		summarizeBy: none
+		sourceColumn: days_to_departure
+
+	column seats_remaining
+		dataType: int64
+		lineageTag: 3e863f1a-77f8-4b34-9dbd-442d4d91c687
+		summarizeBy: none
+		sourceColumn: seats_remaining
+
+	column price_change_pct
+		dataType: double
+		formatString: 0.00
+		lineageTag: b781fd59-3fcf-4898-80cd-ccf024dbea73
+		summarizeBy: none
+		sourceColumn: price_change_pct
+
+	column demand_change_pct
+		dataType: double
+		formatString: 0.00
+		lineageTag: bd79d269-8192-4c86-bc28-2ebd9fcd6993
+		summarizeBy: none
+		sourceColumn: demand_change_pct
+
+	column assumed_future_fare_eur
+		dataType: double
+		formatString: 0.00
+		lineageTag: d103f735-011b-42d5-b56d-5f294882f12d
+		summarizeBy: none
+		sourceColumn: assumed_future_fare_eur
+
+	column baseline_unconstrained_demand
+		dataType: double
+		formatString: 0.00
+		lineageTag: 760bbc83-4e34-4f5f-be52-e7e1c2520f99
+		summarizeBy: none
+		sourceColumn: baseline_unconstrained_demand
+
+	column expected_additional_passengers
+		dataType: double
+		formatString: 0.00
+		lineageTag: 217d1ac1-05b1-4869-826c-b457bd76ae0a
+		summarizeBy: none
+		sourceColumn: expected_additional_passengers
+
+	column capacity_constrained
+		dataType: boolean
+		lineageTag: 6edc08f3-2204-4f16-9f22-fef286ed1098
+		summarizeBy: none
+		sourceColumn: capacity_constrained
+
+	column future_sales_revenue_eur
+		dataType: double
+		formatString: 0.00
+		lineageTag: a723fc0b-ab0b-42b3-a5b9-ae8740b95d2d
+		summarizeBy: none
+		sourceColumn: future_sales_revenue_eur
+
+	column baseline_future_revenue_eur
+		dataType: double
+		formatString: 0.00
+		lineageTag: 6cb89dbc-e863-4626-a9e2-fa32ec7daee1
+		summarizeBy: none
+		sourceColumn: baseline_future_revenue_eur
+
+	column revenue_change_eur
+		dataType: double
+		formatString: 0.00
+		lineageTag: 92ecc616-5af5-443b-b982-71a47f477f88
+		summarizeBy: none
+		sourceColumn: revenue_change_eur
+
+	column scenario_total_booked_revenue_eur
+		dataType: double
+		formatString: 0.00
+		lineageTag: 51a3fb2d-e9a2-4f4b-b93b-3b6cda6c0db0
+		summarizeBy: none
+		sourceColumn: scenario_total_booked_revenue_eur
+
+	column is_synthetic
+		dataType: boolean
+		lineageTag: 0c9db80e-70ff-4e56-92de-b38cfd310717
+		summarizeBy: none
+		sourceColumn: is_synthetic
+
+	partition pricing_scenarios = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\airline-pricing-analysis\data\pricing_scenarios.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"flight_id", type text}, {"route", type text}, {"days_to_departure", Int64.Type}, {"seats_remaining", Int64.Type}, {"price_change_pct", type number}, {"demand_change_pct", type number}, {"assumed_future_fare_eur", type number}, {"baseline_unconstrained_demand", type number}, {"expected_additional_passengers", type number}, {"capacity_constrained", type logical}, {"future_sales_revenue_eur", type number}, {"baseline_future_revenue_eur", type number}, {"revenue_change_eur", type number}, {"scenario_total_booked_revenue_eur", type number}, {"is_synthetic", type logical}}, "en-US")
+				in Typed
+

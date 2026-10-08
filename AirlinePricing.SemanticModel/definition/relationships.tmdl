@@ -1,0 +1,23 @@
+relationship 00d58d7f-712f-4605-b319-7d153b333c7d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: current_vs_history.departure_date
+	toColumn: LocalDateTable_4004e820-e763-4afa-87ed-9b0dcdcb26bf.Date
+
+relationship a463d2ac-5de0-4e42-99f5-58ababc726b4
+	fromColumn: booking_curves.flight_id
+	toColumn: current_vs_history.flight_id
+
+relationship 3c9430e8-3990-479e-9ec0-9e2ef455ee3b
+	fromColumn: pricing_scenarios.flight_id
+	toColumn: current_vs_history.flight_id
+
+relationship bc78bc50-33df-45d5-a6c5-ad691df55e0a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: booking_curves.departure_date
+	toColumn: LocalDateTable_2b64bf4f-c073-4417-ae72-9fec1e585d49.Date
+
+relationship fd7c8e99-6181-49b4-b1b0-5344c50d3a07
+	joinOnDateBehavior: datePartOnly
+	fromColumn: booking_curves.checkpoint_date
+	toColumn: LocalDateTable_9176d197-dff5-4800-a7cd-fad463303aaf.Date
+

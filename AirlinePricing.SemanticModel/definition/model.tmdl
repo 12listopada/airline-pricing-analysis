@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["current_vs_history","booking_curves","pricing_scenarios"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table current_vs_history
+ref table DateTableTemplate_b792406c-0a13-49c8-a568-00ff3388ee07
+ref table LocalDateTable_4004e820-e763-4afa-87ed-9b0dcdcb26bf
+ref table booking_curves
+ref table pricing_scenarios
+ref table LocalDateTable_2b64bf4f-c073-4417-ae72-9fec1e585d49
+ref table LocalDateTable_9176d197-dff5-4800-a7cd-fad463303aaf
+
+ref cultureInfo en-US
+
